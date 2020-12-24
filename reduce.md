@@ -23,6 +23,7 @@ const runInPromiseSequence = (array, value) => array.reduce(
     (promiseChain, current) => promiseChain.then(current), // promiseArray执行reduce的第一个参数
     Promise.resolve(value)); // promiseArray执行reduce的第二个参数，初始值
 
+// 测试一下
 let promiseArr = [
     (last) => new Promise((resolve) => {
         setTimeout(() => {
@@ -37,7 +38,6 @@ let promiseArr = [
         }, 4000)
     }),
 ]
-
 runInPromiseSequence(promiseArr, 'zero') // 将promiseArr传进方法中，只有在前一个promise执行完毕才会往后继续执行。
 // zero  //4s之后打印
 // first  //8s之后打印
@@ -74,6 +74,7 @@ function reduce(callback, initialValue){
     return initial; // 返回最终的结果
 }
 
+// 测试一下
 let arr = [1,2,3,4,5,6,7,8,9,10];
 let num = reduce.call(arr, (last, curr) => { // 此处没有讲reduce挂载到Array中，直接使用call来调用
     return last + curr;
